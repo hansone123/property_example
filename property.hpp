@@ -2,23 +2,54 @@
 #include <iostream>
 
 using namespace std;
-template <class T>
-class Property{
-public:
-    static_assert( sizeof(int) == sizeof(T) || sizeof(float) == sizeof(T) || sizeof(bool) == sizeof(T),"T type is not the specified DataType including int and float");
 
-    Property(string in_name, T in_def) {
+class PropertyBase{
+public:
+    enum Type{
+        SWITCH_PROPERTY=0,
+        RANGE_PROPERTY,
+        PROPERTY_TYPENUM
+    };
+    // enum dataType{
+    //     INT_PROPERTY=0,
+    //     FLOAT_PROPERTY,
+    //     BOOL_PROPERTY
+       
+    // }
+    PropertyBase(Type inType) {
+        type = inType;
+    }
+    enum Type getPropertyType() {
+        return type;
+    }
+private:
+    Type type;
+
+};
+template <class T>
+class Property : public PropertyBase{
+public:
+    static_assert( sizeof(int) == sizeof(T) || sizeof(float) == sizeof(T) || sizeof(bool) == sizeof(T), "T type is not the specified DataType including int, float, bool");
+    
+    Property(PropertyBase::Type in_type, T in_def, string in_name) : PropertyBase(in_type) {
         name = in_name;
         val = in_def;
         def = in_def;
     }
     ~Property() {};
-    bool Set(T in_next) {
-        next = in_next;
+    void Set(T in_val) {
+        if (in_val == val)
+            return;
+        // TODO : notify listener
+        notifyListerner();
+        val = in_val;
     }
     T& GetPtr() {
-        return next;
+        // TODO : notify listener
+        notifyListerner();
+        return val;
     }
+    
     T GetVal() {
         return val;
     }
@@ -28,39 +59,37 @@ public:
     string GetName() {
         return name;
     }
-    string GetTypeName() {
+    string GetValType() {
         return string(typeid(T).name());
     }
-    bool Update() {
-        val = next;
+    virtual void info() {
+        cout << this->GetName() << " " << this->GetValType() << " " << this->GetDef() << " " << this->GetVal() << endl;
     }
 protected:
     string name;
     T val;
     T def;
-    T next;
-private:
-    auto& getValue();
+    void notifyListerner() {
+        cout << name << ": notify listerner" << endl;
+    }
 };
-class switchProperty : public Property<bool>{
+class SwitchProperty : public Property<bool>{
 public:
-    switchProperty(string in_name, bool in_def) : Property(in_name, in_def) {
-    };
-    ~switchProperty() {};
-    
+    SwitchProperty(Type in_type, bool in_def, string in_name) : Property(in_type, in_def, in_name) {
+    }
+    ~SwitchProperty() {}
 private:
-
 };
 
 template <class T>
-class rangeProperty : public Property<T>{
+class RangeProperty : public Property<T>{
 public:
-    static_assert( sizeof(int) == sizeof(T) || sizeof(float) == sizeof(T),"T type is not the specified DataType including int and float");
-    rangeProperty(string in_name, T in_def, T in_min, T in_max) : Property<T>(in_name, in_def) {
+    static_assert( sizeof(int) == sizeof(T) || sizeof(float) == sizeof(T), "T type is not the specified DataType including int and float");
+    RangeProperty(PropertyBase::Type in_type, T in_def, T in_min, T in_max,  string in_name) : Property<T>(in_type, in_def, in_name) {
         min = in_min;
         max = in_max;
-    };
-    ~rangeProperty(){};
+    }
+    ~RangeProperty() {};
     bool Set(T in_val)  {
         in_val = in_val > max ? max : in_val;
         in_val = in_val < min ? min : in_val;
@@ -71,6 +100,9 @@ public:
     }
     T GetMax() {
         return max;
+    }
+    void info() override {
+        cout << this->GetName() << " " << this->GetValType() << " " << this->GetDef() << " " << this->GetVal() << " " << this->GetMin() << "" << this->GetMax() << endl;
     }
 private:
     T min;
