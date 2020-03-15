@@ -7,7 +7,8 @@ class PropertyBase{
 public:
     enum Type{
         SWITCH_PROPERTY=0,
-        RANGE_PROPERTY,
+        I_RANGE_PROPERTY,
+        F_RANGE_PROPERTY,
         PROPERTY_TYPENUM
     };
     // enum dataType{
@@ -24,7 +25,7 @@ public:
     }
 private:
     Type type;
-
+    
 };
 template <class T>
 class Property : public PropertyBase{
