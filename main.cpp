@@ -9,14 +9,16 @@ using namespace std;
 
 // }
 
-map<string, PropertyBase*> loadConfig(char* filepath) {
+typedef map<string, PropertyBase*> Config;
+
+Config loadConfig(char* filepath) {
 	Json::Value data;
 	std::ifstream ifs;
 	ifs.open(filepath);
 	Json::CharReaderBuilder builder;
 	builder["collectComments"] = true;
 	JSONCPP_STRING errs;
-	map<string, PropertyBase*> properties;
+	Config properties;
 	if (!parseFromStream(builder, ifs, &data, &errs)) {
 		std::cout << errs << std::endl;
 		return properties;
@@ -41,7 +43,7 @@ map<string, PropertyBase*> loadConfig(char* filepath) {
 	}
 	return properties;
 }
-void saveConfig(char* filepath, map<string, PropertyBase*> config) {
+void saveConfig(char* filepath, Config config) {
 	Json::Value data;
 	int i=0;
 	for (auto it = config.begin(); it != config.end(); it++, i++) 
@@ -81,7 +83,7 @@ int main(void)
 {
 	const char* src_dir = "./config/demokit_config2.json"; 
 	const char* dist_dir = "./config/demokit_config3.json"; 
-	map<string, PropertyBase*> config = loadConfig((char*)src_dir);
+	Config config = loadConfig((char*)src_dir);
 	saveConfig((char*)dist_dir, config);
 	// for (auto it = config.begin(); it != config.end(); it++) 
 	// {
