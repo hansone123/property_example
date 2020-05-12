@@ -9,6 +9,7 @@ set (CMAKE_CXXFLAGS_RELEASE "$ENV{CXXFLAG} -Wall")
 
 add_executable(${PROJECT_NAME} main.cpp )
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
+target_link_libraries(test.run jsoncpp)
 set_target_properties(${PROJECT_NAME} PROPERTIES
 	RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}" )
 	

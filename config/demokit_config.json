@@ -1,0 +1,248 @@
+[
+	{
+		"name"	: "enable_screen_touch",
+		"type"	: "bool",
+		"val"	: true,
+		"desc"	: "touch_panel_mode"
+	},
+	{
+		"name"	: "enable_ir",
+		"type"	: "bool",
+		"val"	: false,
+		"desc"	: "enable ir"
+	},
+	{
+		"name"	: "enable_hole_fill",
+		"type"	: "bool",
+		"val"	: true,
+		"desc"	: "hole filling"
+	},
+	{
+		"name"	: "camera_mode",
+		"type"	: "int",
+		"val"	: 0,
+		"min"	: 0,
+		"max"	: 6,
+		"desc"	: "camera mode "
+	},
+	{
+		"name"	: "resolution",
+		"type"	: "int",
+		"val"	: 0,
+		"min"	: 0,
+		"max"	: 1,
+		"desc"	: "resolution setting"
+	},
+	{
+		"name"	: "baseline",
+		"type"	: "int",
+		"val"	: 0,
+		"min"	: 0,
+		"max"	: 3,
+		"desc"	: "baseline setting"
+	},
+	{
+		"name"	: "depth_color_z_ofst",
+		"type"	: "int",
+		"val"	: 0,
+		"min"	: 0,
+		"max"	: 60000,
+		"desc"	: "depth red color z offset"
+	},
+	{
+		"name"	: "depth_h_range_min",
+		"type"	: "int",
+		"val"	: 0,
+		"min"	: 0,
+		"max"	: 0,
+		"desc"	: "depth_h_range_min"
+	},
+	{
+		"name"	: "h_range_max",
+		"type"	: "int",
+		"val"	: 330,
+		"min"	: 0,
+		"max"	: 330,
+		"desc"	: "depth_h_range_min"
+	},
+	{
+		"name"	: "depth_z_cut_ofst",
+		"type"	: "int",
+		"val"	: 0,
+		"min"	: 0,
+		"max"	: 60000,
+		"desc"	: "depth_z_cut_ofst"
+	},
+	{
+		"name"	: "depth_z_cut_range",
+		"type"	: "int",
+		"val"	: 60000,
+		"min"	: 0,
+		"max"	: 60000,
+		"desc"	: "depth_z_cut_range"
+	},
+	{
+		"name"	: "pc_sample_level",
+		"type"	: "int",
+		"val"	: 1,
+		"min"	: 1,
+		"max"	: 10,
+		"desc"	: "sample level"
+	},
+	{
+		"name"	: "pc_point_size",
+		"type"	: "int",
+		"val"	: 1,
+		"min"	: 1,
+		"max"	: 10,
+		"desc"	: "point size"
+	},
+	{
+		"name"	: "pc_rotate_speed",
+		"type"	: "int",
+		"val"	: 1,
+		"min"	: 1,
+		"max"	: 10,
+		"desc"	: "rotate speed"
+	},
+	{
+		"name"	: "pc_filter_dlife",
+		"type"	: "int",
+		"val"	: 5,
+		"min"	: 1,
+		"max"	: 30,
+		"desc"	: "filter dlife "
+	},
+	{
+		"name"	: "pc_filter_dthreshold",
+		"type"	: "int",
+		"val"	: 30,
+		"min"	: 1,
+		"max"	: 10000,
+		"desc"	: "filter dthreshold "
+	},
+	{
+		"name"	: "pc_enable_rotate",
+		"type"	: "bool",
+		"val"	: true,
+		"desc"	: "rotate enable (R)"
+	},
+	{
+		"name"	: "pc_enable_filter",
+		"type"	: "bool",
+		"val"	: false,
+		"desc"	: "filter enable (F)"
+	},
+	{
+		"name"	: "pc_view_mode",
+		"type"	: "int",
+		"val"	: 1,
+		"min"	: 0,
+		"max"	: 1,
+		"desc"	: "view mode (V)"
+	},
+	{
+		"name"	: "pc_camera_z_ofst",
+		"type"	: "int", 
+		"val"	: 0, 
+		"min"	: -100, 
+		"max"	: 100, 
+		"desc"	: "camera_z_offset"
+	},
+	{
+		"name"	: "pc_color_z_ofst",
+		"type"	: "int", 
+		"val"	: 0, 
+		"min"	: 0, 
+		"max"	: 60000, 
+		"desc"	: "color_z_offset"
+	},
+	{
+		"name"	: "pc_color_z_range",
+		"type"	: "int", 
+		"val"	: 9100, 
+		"min"	: 0, 
+		"max"	: 60000, 
+		"desc"	: "color_z_range"
+	},
+	{
+		"name"	: "pc_z_cut_ofst",
+		"type"	: "int", 
+		"val"	: 0, 
+		"min"	: 0, 
+		"max"	: 60000, 
+		"desc"	: "z_cut_offset"
+	},
+	{
+		"name"	: "pc_z_cut_range",
+		"type"	: "int", 
+		"val"	: 60000, 
+		"min"	: 0, 
+		"max"	: 60000, 
+		"desc"	: "z_cut_range"
+	},
+	{
+		"name"	: "pc_x_cut_ofst",
+		"type"	: "int", 
+		"val"	: 0, 
+		"min"	: -5000, 
+		"max"	: 5000, 
+		"desc"	: "x_cut_offset"
+	},
+	{
+		"name"	: "pc_x_cut_range",
+		"type"	: "int", 
+		"val"	: 10000, 
+		"min"	: 0, 
+		"max"	: 10000, 
+		"desc"	: "x_cut_range"
+	},
+	{
+		"name"	: "pc_y_cut_ofst",
+		"type"	: "int", 
+		"val"	: 0, 
+		"min"	: -5000, 
+		"max"	: 5000, 
+		"desc"	: "y_cut_offset"
+	},
+	{
+		"name"	: "pc_y_cut_range",
+		"type"	: "int", 
+		"val"	: 10000, 
+		"min"	: 0, 
+		"max"	: 10000, 
+		"desc"	: "y_cut_range"
+	},
+	{
+		"name"	: "imgui_fontSize",
+		"type"	: "float",
+		"val"	: 50,
+		"min"	: 12,
+		"max"	: 80,
+		"desc"	: "imgui font size"
+	},
+	{
+		"name"	: "imgui_spot_size",
+		"type"	: "int",
+		"val"	: 100,
+		"min"	: 50,
+		"max"	: 300,
+		"desc"	: "menu spot size"
+	},
+	{
+		"name"	: "imgui_distancebar_w",
+		"type"	: "float",
+		"val"	: 30,
+		"min"	: 10,
+		"max"	: 300,
+		"desc"	: "distance bar width"
+	},
+	{
+		"name"	: "imgui_distancebar_h",
+		"type"	: "float",
+		"val"	: 100,
+		"min"	: 10,
+		"max"	: 300,
+		"desc"	: "distance bar height"
+	}
+]

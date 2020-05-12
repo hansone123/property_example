@@ -17,23 +17,28 @@ public:
     //     BOOL_PROPERTY
        
     // }
-    PropertyBase(Type inType) {
-        type = inType;
-    }
+    PropertyBase(Type type, string name, string desc) : type(type), name(name), desc(desc){}
     enum Type getPropertyType() {
         return type;
     }
+	virtual void* GetPtr() = 0;
+	string GetName() {
+        return name;
+    }
+	string GetDesc() {
+		return desc;
+	}
 private:
     Type type;
-    
+	string desc;
+    string name;
 };
 template <class T>
 class Property : public PropertyBase{
 public:
     static_assert( sizeof(int) == sizeof(T) || sizeof(float) == sizeof(T) || sizeof(bool) == sizeof(T), "T type is not the specified DataType including int, float, bool");
     
-    Property(PropertyBase::Type in_type, T in_def, string in_name) : PropertyBase(in_type) {
-        name = in_name;
+    Property(PropertyBase::Type in_type, T in_def, string name, string desc) : PropertyBase(in_type, name, desc) {
         val = in_def;
         def = in_def;
     }
@@ -44,9 +49,9 @@ public:
         // TODO : notify listener
         val = in_val;
     }
-    T* GetPtr() {
+    void* GetPtr() {
         // TODO : notify listener
-        return &val;
+        return (void*)&val;
     }
     
     T GetVal() {
@@ -55,23 +60,17 @@ public:
     T GetDef() {
         return def;
     }
-    string GetName() {
-        return name;
-    }
+    
     string GetValType() {
         return string(typeid(T).name());
     }
-    virtual void info() {
-        cout << this->GetName() << " " << this->GetValType() << " " << this->GetDef() << " " << this->GetVal() << endl;
-    }
 protected:
-    string name;
     T val;
     T def;
 };
 class SwitchProperty : public Property<bool>{
 public:
-    SwitchProperty(Type in_type, bool in_def, string in_name) : Property(in_type, in_def, in_name) {
+    SwitchProperty(Type in_type, bool in_def, string in_name, string desc) : Property(in_type, in_def, in_name, desc) {
     }
     ~SwitchProperty() {}
 private:
@@ -81,7 +80,7 @@ template <class T>
 class RangeProperty : public Property<T>{
 public:
     static_assert( sizeof(int) == sizeof(T) || sizeof(float) == sizeof(T), "T type is not the specified DataType including int and float");
-    RangeProperty(PropertyBase::Type in_type, T in_def, T in_min, T in_max,  string in_name) : Property<T>(in_type, in_def, in_name) {
+    RangeProperty(PropertyBase::Type in_type, T in_def, T in_min, T in_max,  string in_name, string desc) : Property<T>(in_type, in_def, in_name, desc) {
         min = in_min;
         max = in_max;
     }
@@ -96,9 +95,6 @@ public:
     }
     T GetMax() {
         return max;
-    }
-    void info() override {
-        cout << this->GetName() << " " << this->GetValType() << " " << this->GetDef() << " " << this->GetVal() << " " << this->GetMin() << "" << this->GetMax() << endl;
     }
 private:
     T min;
