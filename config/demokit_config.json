@@ -47,7 +47,15 @@
 		"val"	: 0,
 		"min"	: 0,
 		"max"	: 60000,
-		"desc"	: "depth red color z offset"
+		"desc"	: "depth color z offset"
+	},
+	{
+		"name"	: "depth_color_z_range",
+		"type"	: "int",
+		"val"	: 0,
+		"min"	: 0,
+		"max"	: 60000,
+		"desc"	: "depth color z range"
 	},
 	{
 		"name"	: "depth_h_range_min",
