@@ -26,17 +26,17 @@ Config loadConfig(char* filepath) {
 	for (int i=0; i<data.size(); i++) {
 		if (data[i]["type"].asString().compare("bool") == 0) {
 			properties[data[i]["name"].asString()] = new SwitchProperty(PropertyBase::SWITCH_PROPERTY, data[i]["val"].asBool(), 
-														data[i]["name"].asString(), string("desc"));
+														data[i]["name"].asString(), data[i]["desc"].asString());
 			// printf("[%s] %d\n",data[i]["name"].asString().c_str(), data[i]["val"].asBool());
 		}
 		else if (data[i]["type"].asString().compare("float") == 0) {
 			properties[data[i]["name"].asString()] = new RangeProperty<float>(PropertyBase::F_RANGE_PROPERTY, data[i]["val"].asFloat(), 
-														data[i]["min"].asFloat(), data[i]["max"].asFloat(), data[i]["name"].asString(), string("desc"));
+														data[i]["min"].asFloat(), data[i]["max"].asFloat(), data[i]["name"].asString(), data[i]["desc"].asString());
 			// printf("[%s] %d\n",data[i]["name"].asString().c_str(), data[i]["val"].asInt());
 		}
 		else if (data[i]["type"].asString().compare("int") == 0) {
 			properties[data[i]["name"].asString()] = new RangeProperty<int>(PropertyBase::I_RANGE_PROPERTY, data[i]["val"].asInt(), 
-														data[i]["min"].asInt(), data[i]["max"].asInt(), data[i]["name"].asString(), string("desc"));
+														data[i]["min"].asInt(), data[i]["max"].asInt(), data[i]["name"].asString(), data[i]["desc"].asString());
 			// printf("[%s] %f\n",data[i]["name"].asString().c_str(), data[i]["val"].asFloat());
 			
 		}
@@ -81,8 +81,8 @@ void saveConfig(char* filepath, Config config) {
 }
 int main(void) 
 {
-	const char* src_dir = "./config/demokit_config2.json"; 
-	const char* dist_dir = "./config/demokit_config3.json"; 
+	const char* src_dir = "./config/demokit_config.json"; 
+	const char* dist_dir = "./config/demokit_config2.json"; 
 	Config config = loadConfig((char*)src_dir);
 	saveConfig((char*)dist_dir, config);
 	// for (auto it = config.begin(); it != config.end(); it++) 
