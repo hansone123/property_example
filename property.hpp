@@ -42,13 +42,11 @@ public:
         if (in_val == val)
             return;
         // TODO : notify listener
-        notifyListerner();
         val = in_val;
     }
-    T& GetPtr() {
+    T* GetPtr() {
         // TODO : notify listener
-        notifyListerner();
-        return val;
+        return &val;
     }
     
     T GetVal() {
@@ -70,9 +68,6 @@ protected:
     string name;
     T val;
     T def;
-    void notifyListerner() {
-        cout << name << ": notify listerner" << endl;
-    }
 };
 class SwitchProperty : public Property<bool>{
 public:
